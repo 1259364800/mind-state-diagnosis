@@ -1,0 +1,371 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0A0A12;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #fff;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  max-height: 900px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Intro */
+.intro-screen {
+  text-align: center;
+}
+
+.glitch-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #FF00A0;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  text-shadow: 3px 0 #00F0FF, -3px 0 #FFD700;
+  position: relative;
+  line-height: 1.2;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-title::before {
+  color: #00F0FF;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  transform: translateX(-2px);
+}
+
+.glitch-title::after {
+  color: #FFD700;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  transform: translateX(2px);
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 48px;
+}
+
+.btn-start {
+  width: 220px;
+  height: 64px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #FF00A0, #7B2D8E);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(255, 0, 160, 0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-start:active {
+  transform: scale(0.96);
+}
+
+.footer {
+  margin-top: 24px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Question */
+.question-screen {
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+
+.progress {
+  width: 100%;
+  height: 6px;
+  background: #1a1a2e;
+  border-radius: 3px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00F0FF, #FF00A0);
+  transition: width 0.3s ease;
+}
+
+.question-number {
+  font-size: 14px;
+  color: #00F0FF;
+  font-weight: 700;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+.question-text {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  align-self: flex-start;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.option-btn {
+  width: 100%;
+  padding: 18px 16px;
+  border: 2px solid #1a1a2e;
+  border-radius: 14px;
+  background: #12121c;
+  color: #fff;
+  font-size: 17px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.option-btn:hover,
+.option-btn:active {
+  border-color: #FF00A0;
+  background: #1a0a1a;
+}
+
+.option-label {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  color: #00F0FF;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Loading */
+.loading-screen {
+  text-align: center;
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 4px solid #1a1a2e;
+  border-top-color: #FF00A0;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 24px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #aaa;
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Result */
+.result-screen {
+  justify-content: flex-start;
+  padding-top: 40px;
+  overflow-y: auto;
+}
+
+.result-card {
+  width: 100%;
+  background: #12121c;
+  border: 2px solid #1a1a2e;
+  border-radius: 24px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF00A0, #00F0FF, #FFD700);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-label {
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.card-level {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0A0A12;
+  background: #FFD700;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.card-emoji {
+  font-size: 80px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.card-type {
+  font-size: 32px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.card-diagnosis {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #ddd;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-traits {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.trait {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #1a1a2e;
+  color: #00F0FF;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-advice {
+  background: #1a1a2e;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #bbb;
+}
+
+.advice-label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.result-actions {
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-share,
+.btn-retry {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn-share {
+  background: #00F0FF;
+  color: #0A0A12;
+}
+
+.btn-retry {
+  background: transparent;
+  border: 2px solid #333;
+  color: #aaa;
+}
+
+.btn-share:active,
+.btn-retry:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 400px) {
+  .glitch-title {
+    font-size: 36px;
+  }
+  .question-text {
+    font-size: 22px;
+  }
+  .card-type {
+    font-size: 26px;
+  }
+}
